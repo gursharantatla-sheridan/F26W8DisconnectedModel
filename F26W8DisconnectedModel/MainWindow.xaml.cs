@@ -22,6 +22,7 @@ namespace F26W8DisconnectedModel
         public MainWindow()
         {
             InitializeComponent();
+            LoadCategoriesInCombobox();
         }
 
         private void btnLoadAllProducts_Click(object sender, RoutedEventArgs e)
@@ -92,6 +93,22 @@ namespace F26W8DisconnectedModel
         private void btnSearch_Click(object sender, RoutedEventArgs e)
         {
             grdProducts.ItemsSource = crud.GetProductsByName(txtName.Text).DefaultView;
+        }
+
+        private void LoadCategoriesInCombobox()
+        {
+            cmbCategories.ItemsSource = crud.GetAllCategories().DefaultView;
+            cmbCategories.DisplayMemberPath = "CategoryName";
+            cmbCategories.SelectedValuePath = "CategoryID";
+        }
+
+        private void cmbCategories_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (cmbCategories.SelectedIndex >= 0)
+            {
+                int catId = (int)cmbCategories.SelectedValue;
+                grdProducts.ItemsSource = crud.GetProductsByCategory(catId).DefaultView;
+            }
         }
     }
 }
