@@ -36,5 +36,11 @@ namespace F26W8DisconnectedModel
             // define primary key
 
         }
+
+        public DataTable GetAllProducts()
+        {
+            InitProductsTable();
+            return _tbl;
+        }
     }
 }
