@@ -42,5 +42,11 @@ namespace F26W8DisconnectedModel
             InitProductsTable();
             return _tbl;
         }
+
+        public DataRow? GetProductById(int id)
+        {
+            var row = _tbl.Rows.Find(id);
+            return row;
+        }
     }
 }
