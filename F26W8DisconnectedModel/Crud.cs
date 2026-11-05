@@ -34,7 +34,10 @@ namespace F26W8DisconnectedModel
             _tbl = _ds.Tables["Products"]!;
 
             // define primary key
-
+            DataColumn[] pk = new DataColumn[1];
+            pk[0] = _tbl.Columns["ProductID"]!;
+            pk[0].AutoIncrement = true;
+            _tbl.PrimaryKey = pk;
         }
 
         public DataTable GetAllProducts()
